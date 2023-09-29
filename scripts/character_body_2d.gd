@@ -37,4 +37,4 @@ func _physics_process(delta):
 
 	global_position = global_position.clamp(Vector2(0,0), screesize)
 		
-	print(global_position)
+#	print(global_position)
