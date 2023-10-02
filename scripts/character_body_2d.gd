@@ -1,15 +1,20 @@
 extends CharacterBody2D
 
 var force=Vector2(0, 0)
+var rocket_scene = preload("res://prefabs/area_2d.tscn")
 @export var speed=300
 
 
 
 
 
-
+func _process(delta):
+	if Input.is_action_just_pressed("fire"):
+		shoot()
+	
 
 func _physics_process(delta):
+	
 	if Input.is_action_pressed("move_right"):
 		force=Vector2(speed, 0)
 	elif Input.is_action_pressed("move_left"):
@@ -38,3 +43,9 @@ func _physics_process(delta):
 	global_position = global_position.clamp(Vector2(0,0), screesize)
 		
 #	print(global_position)
+
+func  shoot():
+	
+	var rocket_instance = rocket_scene.instantiate()
+	add_child(rocket_instance)
+	rocket_instance.global_position.x += 80
