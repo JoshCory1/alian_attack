@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 var force=Vector2(0, 0)
-var rocket_scene = preload("res://prefabs/area_2d.tscn")
+var rocket_scene = preload("res://prefabs/Rocket.tscn")
+@onready var rocket_container = $RocketContainer #get_node("RocketContainer")
 @export var speed=300
-
 
 
 
@@ -47,5 +47,6 @@ func _physics_process(delta):
 func  shoot():
 	
 	var rocket_instance = rocket_scene.instantiate()
-	add_child(rocket_instance)
+	rocket_container.add_child(rocket_instance)
+	rocket_instance.global_position = global_position
 	rocket_instance.global_position.x += 80
