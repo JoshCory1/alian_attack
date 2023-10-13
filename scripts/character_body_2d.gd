@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
+signal took_damage
+
 var force=Vector2(0, 0)
+
 var rocket_scene = preload("res://prefabs/Rocket.tscn")
+
 @onready var rocket_container = $RocketContainer #get_node("RocketContainer")
+
 @export var speed=300
 
 
@@ -50,3 +55,9 @@ func  shoot():
 	rocket_container.add_child(rocket_instance)
 	rocket_instance.global_position = global_position
 	rocket_instance.global_position.x += 80
+
+func take_damage():
+	emit_signal("took_damage")
+	
+func die():
+	get_tree().reload_current_scene()

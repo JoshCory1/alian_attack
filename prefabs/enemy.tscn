@@ -22,3 +22,5 @@ rotation = -1.5708
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_5tys0")
 flip_h = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
