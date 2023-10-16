@@ -60,4 +60,4 @@ func take_damage():
 	emit_signal("took_damage")
 	
 func die():
-	get_tree().reload_current_scene()
+	queue_free()

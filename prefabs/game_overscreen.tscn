@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd0rfhkm15ig2"]
+
+[ext_resource type="Script" path="res://scripts/game_overscreen.gd" id="1_xmmd8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4j2b6"]
+bg_color = Color(0.470588, 0.0156863, 0.0156863, 0.490196)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n8sc3"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_uawwo"]
+font_size = 48
+font_color = Color(0.133333, 0.321569, 0.729412, 0.921569)
+
+[node name="GameOverscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xmmd8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.0
+offset_top = -195.0
+offset_right = 346.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4j2b6")
+
+[node name="GameOver" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.5
+offset_top = -138.0
+offset_right = 173.5
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_n8sc3")
+
+[node name="Score" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -45.0
+offset_right = 162.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE : 99999
+"
+label_settings = SubResource("LabelSettings_uawwo")
+
+[node name="RetryButten" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = 46.0
+offset_right = 117.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 44
+text = "RETRY"
+
+[connection signal="pressed" from="Panel/RetryButten" to="." method="_on_retry_butten_pressed"]
