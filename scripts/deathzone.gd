@@ -7,17 +7,17 @@ var score = 0
 
 func _ready():
 	hud.set_score_lable(score)
+	hud.set_lives(lives)
 func _on_area_2d_area_entered(area):
 	area.die()
 
 
 func _on_player_took_damage():
 	lives -= 1
+	hud.set_lives(lives)
 	if lives == 0:
 		print("GAME OVER!!!!")
 		player.die()
-	elif lives > -1:
-		print("your lives are ", lives)
 		
 
 
