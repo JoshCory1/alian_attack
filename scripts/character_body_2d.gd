@@ -7,6 +7,7 @@ var force=Vector2(0, 0)
 var rocket_scene = preload("res://prefabs/Rocket.tscn")
 
 @onready var rocket_container = $RocketContainer #get_node("RocketContainer")
+@onready var laser = $Laser
 
 @export var speed=300
 
@@ -16,6 +17,7 @@ var rocket_scene = preload("res://prefabs/Rocket.tscn")
 func _process(delta):
 	if Input.is_action_just_pressed("fire"):
 		shoot()
+		laser.play()
 	
 
 func _physics_process(delta):

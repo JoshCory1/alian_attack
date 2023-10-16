@@ -1,7 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://bslir7kqw6513"]
+[gd_scene load_steps=10 format=3 uid="uid://bslir7kqw6513"]
 
 [ext_resource type="Script" path="res://scripts/character_body_2d.gd" id="1_7d8ff"]
 [ext_resource type="Texture2D" uid="uid://4wgladxu0xom" path="res://assets/textures/player_ship.png" id="1_io6d4"]
+[ext_resource type="AudioStream" uid="uid://cic55uixuvo2y" path="res://assets/audio/sfx_laser2.wav" id="3_alud4"]
+
+[sub_resource type="Gradient" id="Gradient_3x6of"]
+offsets = PackedFloat32Array(0, 0.57037, 1)
+colors = PackedColorArray(0.968627, 1, 0, 0, 0.843137, 0.533333, 0.0980392, 1, 0.831373, 0.109804, 0.109804, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fsabn"]
+gradient = SubResource("Gradient_3x6of")
+
+[sub_resource type="Curve" id="Curve_yasr6"]
+_data = [Vector2(0, 0.221053), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x0npy"]
+curve = SubResource("Curve_yasr6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j480i"]
+lifetime_randomness = 0.3
+emission_shape = 3
+emission_box_extents = Vector3(1, 15, 1)
+particle_flag_disable_z = true
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = -200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 10.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_x0npy")
+color_ramp = SubResource("GradientTexture1D_fsabn")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mjm0y"]
 radius = 26.0
@@ -10,6 +40,14 @@ height = 102.0
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_7d8ff")
+
+[node name="FlameParticleEffect" type="GPUParticles2D" parent="."]
+position = Vector2(-35, 0)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_j480i")
+lifetime = 0.3
+local_coords = true
+trail_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
@@ -20,3 +58,6 @@ texture = ExtResource("1_io6d4")
 shape = SubResource("CapsuleShape2D_mjm0y")
 
 [node name="RocketContainer" type="Node" parent="."]
+
+[node name="Laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_alud4")
